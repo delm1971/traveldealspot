@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Deal Spot | Compare Flights, Cars, Tours, Transfers & More</title>
+  <meta name="description" content="Travel Deal Spot helps travelers compare flights, car rentals, tours, airport transfers, attraction tickets, train routes, and more from trusted travel partners in one place." />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121b2e;
+      --panel-2: #17233a;
+      --text: #eef4ff;
+      --muted: #b4c1d8;
+      --accent: #4da3ff;
+      --accent-2: #67e8f9;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --border: rgba(255,255,255,.08);
+      --shadow: 0 20px 40px rgba(0,0,0,.25);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #08101d 0%, #0b1220 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(8,16,29,.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: .2px;
+      font-size: 1.1rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .hero {
+      padding: 58px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-card {
+      padding: 32px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(77,163,255,.14);
+      color: #cfe7ff;
+      font-size: .85rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.07rem;
+      margin: 0 0 22px;
+      max-width: 62ch;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #06111f;
+    }
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255,255,255,.03);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .search-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .search-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .search-card p {
+      color: var(--muted);
+      margin: 0 0 18px;
+      font-size: .96rem;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+    }
+
+    .quick-link small { color: var(--muted); display: block; }
+    .pill {
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      background: rgba(34,197,94,.15);
+      color: #b8ffcb;
+      border: 1px solid rgba(34,197,94,.25);
+    }
+
+    section {
+      padding: 16px 0 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .card .tag {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-bottom: 12px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #d9e9ff;
+      background: rgba(77,163,255,.14);
+      border: 1px solid rgba(77,163,255,.2);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0 0 18px;
+      flex-grow: 1;
+    }
+
+    .card .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .card .micro {
+      margin-top: 12px;
+      color: #92a3bf;
+      font-size: .85rem;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .disclosure {
+      margin-top: 14px;
+      color: #95a8c7;
+      font-size: .9rem;
+    }
+
+    .footer {
+      padding: 34px 0 48px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .list {
+      padding-left: 18px;
+      color: var(--muted);
+      margin: 10px 0 0;
+    }
+
+    .notice {
+      background: rgba(245,158,11,.08);
+      border: 1px solid rgba(245,158,11,.2);
+      color: #ffe0a6;
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .footer-grid,
+      .feature-row,
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero-grid,
+      .footer-grid,
+      .feature-row,
+      .grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .search-card,
+      .card { padding: 20px; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Travel Deal Spot</div>
+      <nav class="nav">
+        <a href="#flights">Flights</a>
+        <a href="#cars">Cars</a>
+        <a href="#activities">Activities</a>
+        <a href="#transfers">Transfers</a>
+        <a href="#travel-essentials">Essentials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">✈️ Trusted travel deals, trip extras, and booking tools in one place</div>
+          <h1>Plan your trip with trusted travel partners</h1>
+          <p>
+            Compare flights, rental cars, airport transfers, attraction tickets, train routes, and travel extras from carefully selected partners. Built to help travelers save time, compare options quickly, and book the right trip components in one place.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://trip.tpo.mx/v3tEp9oq" target="_blank" rel="noopener sponsored">Start with Flights</a>
+            <a class="btn btn-secondary" href="#offers">Explore All Travel Options</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>10+ travel partners</strong>
+              <span>Flights, cars, tours, transfers, train tickets, and travel essentials.</span>
+            </div>
+            <div class="stat">
+              <strong>Easy trip planning</strong>
+              <span>Clear categories help travelers find the right booking option faster.</span>
+            </div>
+            <div class="stat">
+              <strong>Customer-first layout</strong>
+              <span>Clean design built for confidence, simplicity, and mobile users.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel search-card">
+          <h2>Popular booking categories</h2>
+          <p>Most travelers start with flights, then compare transportation, attractions, and useful trip extras.</p>
+          <div class="stack">
+            <a class="quick-link" href="https://trip.tpo.mx/v3tEp9oq" target="_blank" rel="noopener sponsored">
+              <span><strong>Flights & core booking</strong><small>Compare travel options with Trip.com</small></span>
+              <span class="pill">Popular</span>
+            </a>
+            <a class="quick-link" href="https://discovercars.tpo.mx/aJdYouRz" target="_blank" rel="noopener sponsored">
+              <span><strong>Rental cars</strong><small>Browse car rental offers</small></span>
+              <span class="pill">Top add-on</span>
+            </a>
+            <a class="quick-link" href="https://kiwitaxi.tpo.mx/iSlRXtd9" target="_blank" rel="noopener sponsored">
+              <span><strong>Airport transfers</strong><small>Pre-book your ride</small></span>
+              <span class="pill">Convenient</span>
+            </a>
+            <a class="quick-link" href="https://gocity.tpo.mx/St1QSsB8" target="_blank" rel="noopener sponsored">
+              <span><strong>Things to do</strong><small>City passes and attractions</small></span>
+              <span class="pill">Explore</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container feature-row">
+        <div class="feature">
+          <strong>Compare trusted categories</strong>
+          Flights, cars, transfers, tours, and travel essentials are organized in one simple flow.
+        </div>
+        <div class="feature">
+          <strong>Book what fits your trip</strong>
+          Choose only the services you need, whether that is flights only or a full travel plan.
+        </div>
+        <div class="feature">
+          <strong>Save time while planning</strong>
+          Browse the most common travel needs without jumping between multiple pages.
+        </div>
+        <div class="feature">
+          <strong>Built for travelers</strong>
+          Simple language, clear buttons, and mobile-friendly design make booking easier.
+        </div>
+      </div>
+    </section>
+
+    <section id="offers">
+      <div class="container section-head">
+        <div>
+          <h2>Everything you need for a smoother trip</h2>
+          <p>Start with the essentials, then add transportation, activities, and travel tools that match your destination.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="flights">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Flights, routes, and core booking</h2>
+            <p>These are your primary conversion offers for broad travel traffic.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Primary offer</span>
+            <h3>Trip.com</h3>
+            <p>Start here to compare flights and broad travel booking options. This is the best first step for most travelers.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://trip.tpo.mx/v3tEp9oq" target="_blank" rel="noopener sponsored">Find Flights</a>
+            </div>
+            <div class="micro">Best placement: hero, sticky CTA, and final page CTA.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Ground & rail</span>
+            <h3>12Go</h3>
+            <p>Ideal for travelers moving between cities or countries by train, bus, ferry, or private transfer.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://12go.tpo.mx/SosTLrFS" target="_blank" rel="noopener sponsored">Check Routes</a>
+            </div>
+            <div class="micro">Works well for Southeast Asia and multi-stop itinerary traffic.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Compensation</span>
+            <h3>Compensair</h3>
+            <p>If your flight was delayed, canceled, or overbooked, this may help you check whether compensation is available.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://compensair.tpo.mx/V6vaMRJp" target="_blank" rel="noopener sponsored">Check Compensation</a>
+            </div>
+            <div class="micro">Ideal for content about airline delays, cancellations, and refund rights.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cars">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Car rentals</h2>
+            <p>These should appear right after flights for travelers who still need mobility at their destination.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Top upsell</span>
+            <h3>DiscoverCars</h3>
+            <p>Compare rental car options for airport pickups, road trips, and destination travel.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://discovercars.tpo.mx/aJdYouRz" target="_blank" rel="noopener sponsored">Compare Rental Cars</a>
+            </div>
+            <div class="micro">Strong fit beneath flight CTAs and destination guides.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Local alternative</span>
+            <h3>Localrent</h3>
+            <p>Browse an additional local car rental option that may offer better availability or pricing in some destinations.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://localrent.tpo.mx/SzVLOZ3B" target="_blank" rel="noopener sponsored">Browse Localrent</a>
+              <a class="btn btn-secondary" href="https://localrent.tpo.mx/ZNpYatZL" target="_blank" rel="noopener sponsored">Backup Localrent Link</a>
+            </div>
+            <div class="micro">Keep both links available until you decide which tracks better.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Tours, attraction tickets, and city passes</h2>
+            <p>These offers monetize travelers after the booking phase, when they start planning what to do.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Experiences</span>
+            <h3>Tutu</h3>
+            <p>Discover local tours and activities to help make the most of your destination.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://tutu.tpo.mx/eg2U8iWa" target="_blank" rel="noopener sponsored">Explore Tours</a>
+            </div>
+            <div class="micro">Use on destination pages and “things to do” sections.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Local experiences</span>
+            <h3>Sputnik8</h3>
+            <p>Find more destination experiences and itinerary ideas for your trip.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://sputnik8.tpo.mx/APl4I2KH" target="_blank" rel="noopener sponsored">Find Experiences</a>
+            </div>
+            <div class="micro">Good secondary offer for travelers comparing activity options.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Attraction tickets</span>
+            <h3>Tiqets</h3>
+            <p>Browse attraction, museum, and event tickets before you arrive.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://tiqets.tpo.mx/tdkoqCUl" target="_blank" rel="noopener sponsored">Get Tickets</a>
+            </div>
+            <div class="micro">Works especially well in city-specific content.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Bundled savings</span>
+            <h3>Go City</h3>
+            <p>Save on multiple attractions and experiences with bundled city passes.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://gocity.tpo.mx/St1QSsB8" target="_blank" rel="noopener sponsored">See City Passes</a>
+            </div>
+            <div class="micro">Great for itinerary pages and family travel traffic.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="transfers">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Airport transfers and local transportation</h2>
+            <p>Catch travelers who need a ride before they consider renting a car.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Private transfer</span>
+            <h3>KiwiTaxi</h3>
+            <p>Pre-book an airport or destination transfer for a smoother arrival.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://kiwitaxi.tpo.mx/iSlRXtd9" target="_blank" rel="noopener sponsored">Book Transfer</a>
+            </div>
+            <div class="micro">High intent traffic from airport, hotel, and family travel pages.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Alternative transfer</span>
+            <h3>HolidayTaxis</h3>
+            <p>Compare another airport transfer option for availability, pricing, and destination coverage.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://holidaytaxis.tpo.mx/1oK3LGcQ" target="_blank" rel="noopener sponsored">Check Transfer Options</a>
+            </div>
+            <div class="micro">Good as a secondary CTA beside KiwiTaxi.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="travel-essentials">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Travel essentials and smart add-ons</h2>
+            <p>These backend offers increase total earnings per traveler after the main booking decision.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Connectivity</span>
+            <h3>DrimSim</h3>
+            <p>Stay connected abroad with travel mobile service and data options for international trips.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://drimsim.tpo.mx/kI4Fzonp" target="_blank" rel="noopener sponsored">Stay Connected Abroad</a>
+            </div>
+            <div class="micro">Strong fit for international trip and digital nomad content.</div>
+          </article>
+
+          <article class="card">
+            <span class="tag">Budget travel angle</span>
+            <h3>CheapOair link</h3>
+            <p>Explore another budget travel option for flight-focused deal seekers.</p>
+            <div class="actions">
+              <a class="btn btn-secondary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener sponsored">See Budget Flight Deals</a>
+            </div>
+            <div class="micro">Your original pasted URL missed the opening “h”; this version is corrected.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container panel" style="padding: 26px; margin-top: 12px;">
+        <div class="section-head" style="margin-bottom: 10px;">
+          <div>
+            <h2>How to use this site</h2>
+            <p>For the best experience, start with your biggest travel need first and add extras after.</p>
+          </div>
+        </div>
+        <ol class="list">
+          <li>Start with flights if you still need to book travel.</li>
+          <li>Add a rental car or airport transfer based on your destination plans.</li>
+          <li>Browse attractions, tickets, and city passes after your transportation is set.</li>
+          <li>Use train and route tools if your trip includes multiple stops.</li>
+          <li>Check compensation support if you had a disrupted flight.</li>
+          <li>Add travel connectivity and other extras before departure.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Frequently asked questions</h2>
+            <p>Quick answers to help visitors understand how the site works.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Do I book directly on this site?</h3>
+            <p>No. This site helps you compare travel options and then sends you to a trusted travel partner to complete your booking.</p>
+          </article>
+          <article class="card">
+            <h3>Does it cost extra to use these links?</h3>
+            <p>No extra cost is added for using these partner links. Pricing and availability are handled by the booking partner.</p>
+          </article>
+          <article class="card">
+            <h3>Can I use only one category?</h3>
+            <p>Yes. You can use just flights, just cars, just transfers, or any other single category that fits your trip.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container panel" style="padding: 26px; margin-top: 12px;">
+        <div class="section-head" style="margin-bottom: 10px;">
+             </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>About Travel Deal Spot</strong>
+        <p>
+          Travel Deal Spot is a travel comparison and trip-planning site that helps visitors find flights, transportation, destination activities, and useful travel extras through selected partner platforms.
+        </p>
+        <p class="disclosure">
+          Affiliate disclosure: Some links on this site are affiliate links. We may earn a commission if you book through our links, at no additional cost to you.
+        </p>
+      </div>
+      <div>
+        <strong>Recommended trust pages</strong>
+        <ul class="list">
+          <li>About Us</li>
+          <li>Contact</li>
+          <li>Privacy Policy</li>
+          <li>Terms of Use</li>
+        </ul>
+             </div>
+    </div>
+  </footer>
+</body>
+</html>
