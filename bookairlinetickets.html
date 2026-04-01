@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CheapAir Travel Deals | Save on Flights, Hotels & Vacations</title>
+  <meta name="description" content="Find affordable flights, hotels, and vacation deals with CheapAir. Explore travel savings and book your next trip today." />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+      background: #f8fafc;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; }
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8 55%, #38bdf8);
+      color: white;
+      padding: 72px 0 56px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+    .hero p {
+      font-size: 1.08rem;
+      max-width: 640px;
+      margin: 0 0 24px;
+      color: rgba(255,255,255,0.92);
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 28px 0 18px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .btn-primary {
+      background: #f59e0b;
+      color: #111827;
+    }
+    .btn-primary:hover { background: #fbbf24; }
+    .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 22px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+    .hero-card h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+    }
+    .deal-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+    }
+    .deal-list li {
+      margin-bottom: 12px;
+      padding-left: 28px;
+      position: relative;
+      color: rgba(255,255,255,0.94);
+    }
+    .deal-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      color: #fde68a;
+    }
+    .section {
+      padding: 70px 0;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin: 0 0 12px;
+      color: #0f172a;
+    }
+    .section-intro {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 40px;
+      color: #475569;
+      font-size: 1.04rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      color: #0f172a;
+    }
+    .card p {
+      margin-bottom: 18px;
+      color: #475569;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .feature-box {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .feature-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #1e3a8a;
+    }
+    .testimonial-wrap {
+      background: linear-gradient(180deg, #ffffff, #f1f5f9);
+    }
+    blockquote {
+      margin: 0;
+      padding: 0;
+    }
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial {
+      background: white;
+      padding: 26px;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+      border: 1px solid #e5e7eb;
+    }
+    .testimonial p {
+      color: #334155;
+      margin-bottom: 12px;
+    }
+    .testimonial strong {
+      color: #0f172a;
+    }
+    .cta-banner {
+      background: linear-gradient(135deg, #082f49, #0ea5e9);
+      color: white;
+      border-radius: 26px;
+      padding: 42px 32px;
+      text-align: center;
+      box-shadow: 0 16px 34px rgba(8, 47, 73, 0.2);
+    }
+    .cta-banner h2 {
+      color: white;
+      margin-bottom: 10px;
+    }
+    .cta-banner p {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      color: rgba(255,255,255,0.92);
+    }
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .small-note {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .testimonials,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Affordable travel deals in one place</div>
+        <h1>Travel More. Spend Less. Book Smarter.</h1>
+        <p>
+          Discover affordable flights, hotels, and vacation savings with CheapAir. Whether you are planning a quick getaway,
+          a family vacation, or a last-minute trip, you can explore deals designed to help you stretch your travel budget.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">Find CheapAir Deals</a>
+          <a class="btn btn-secondary" href="#benefits">Why Travelers Love It</a>
+        </div>
+        <p class="small-note">Start exploring affordable travel options and compare deals for your next trip.</p>
+      </div>
+      <div class="hero-card">
+        <h3>Plan your next trip with confidence</h3>
+        <ul class="deal-list">
+          <li>Search budget-friendly travel options quickly</li>
+          <li>Compare flights, hotels, and vacation offers</li>
+          <li>Great for weekend trips, family vacations, and business travel</li>
+          <li>Easy booking path for travelers looking to save</li>
+        </ul>
+        <a class="btn btn-primary" style="width:100%; text-align:center;" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">Book Through CheapAir</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="benefits">
+    <div class="container">
+      <h2>Why use CheapAir for your next getaway?</h2>
+      <p class="section-intro">
+        Discover a simple way to explore flights, hotels, and vacation options for your next trip. Whether you are planning ahead or booking soon, CheapAir helps make travel planning easier.
+      </p>
+      <div class="cards">
+        <div class="card">
+          <h3>Affordable Options</h3>
+          <p>Explore travel choices that fit a wide range of budgets, from quick escapes to full vacation plans.</p>
+          <a class="btn btn-primary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">View Deals</a>
+        </div>
+        <div class="card">
+          <h3>Easy Comparison</h3>
+          <p>Help visitors move from research to booking with a clear path to browse and compare offers.</p>
+          <a class="btn btn-primary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">Compare Travel</a>
+        </div>
+        <div class="card">
+          <h3>Perfect for Many Trips</h3>
+          <p>Great for family vacations, solo travel, romantic getaways, holiday planning, and more.</p>
+          <a class="btn btn-primary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">Start Planning</a>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-box">
+          <strong>For last-minute travelers</strong>
+          Need to get away soon? Give visitors a fast route to browse airfare and hotel options today.
+        </div>
+        <div class="feature-box">
+          <strong>For deal seekers</strong>
+          Perfect for users who want to stretch their money further and feel confident they are exploring value-first options.
+        </div>
+        <div class="feature-box">
+          <strong>For families and groups</strong>
+          Make it easier to plan larger trips where convenience and savings matter most.
+        </div>
+        <div class="feature-box">
+          <strong>For vacation dreamers</strong>
+          Encourage visitors to take the next step from browsing inspiration to booking.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonial-wrap">
+    <div class="container">
+      <h2>Why travelers keep coming back</h2>
+      <p class="section-intro">
+        From quick weekend trips to longer vacations, travelers want a booking experience that feels simple, clear, and easy to use.
+      </p>
+      <div class="testimonials">
+        <div class="testimonial">
+          <blockquote>
+            <p>“I wanted a simple place to start planning my trip without getting overwhelmed. This made it easy to jump right into travel deals.”</p>
+            <strong>— Budget traveler</strong>
+          </blockquote>
+        </div>
+        <div class="testimonial">
+          <blockquote>
+            <p>“The page feels clear and helpful. It gives me enough info to click through and look for flights or vacation options fast.”</p>
+            <strong>— Family vacation planner</strong>
+          </blockquote>
+        </div>
+        <div class="testimonial">
+          <blockquote>
+            <p>“Straight to the point, mobile-friendly, and easy to navigate. Exactly what I want when I’m searching for travel savings.”</p>
+            <strong>— Frequent flyer</strong>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to find your next travel deal?</h2>
+        <p>
+          Click below to explore CheapAir travel options and start planning your next affordable escape. Browse travel offers, compare options, and get inspired for your next trip.
+        </p>
+        <div class="cta-row" style="justify-content:center; margin-bottom:0;">
+          <a class="btn btn-primary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">Explore CheapAir Now</a>
+          <a class="btn btn-secondary" href="https://track.vcommission.com/click?campaign_id=12864&pub_id=116932" target="_blank" rel="noopener noreferrer">See Travel Offers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Cheap Travel Guide. All rights reserved.</p>
+      <p class="small-note">
+        This page contains promotional links. Travel pricing and availability are subject to change.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
