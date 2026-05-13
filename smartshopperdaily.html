@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Everyday Deals | Save on Home, Tech, Grocery & More</title>
+  <meta name="description" content="Find everyday savings on home essentials, electronics, grocery items, personal care, and more. Shop trusted deals through our recommended shopping partner." />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .top-bar {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0053e2 0%, #0071dc 45%, #ffc220 100%);
+      color: #ffffff;
+      padding: 70px 20px 60px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -1.5px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 20px;
+      opacity: 0.96;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #0053e2;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .trust-strip {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 20px;
+    }
+
+    .trust-grid {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      text-align: center;
+      font-weight: 700;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 58px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #475569;
+      font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #e8f1ff;
+      color: #0053e2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .card p {
+      color: #475569;
+      margin-bottom: 18px;
+    }
+
+    .card a {
+      color: #0053e2;
+      font-weight: 800;
+    }
+
+    .deal-box {
+      background: #ffffff;
+      border-radius: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.12);
+      border: 1px solid #e5e7eb;
+    }
+
+    .deal-copy {
+      padding: 42px;
+    }
+
+    .deal-copy h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      margin-bottom: 16px;
+      color: #0f172a;
+    }
+
+    .deal-copy p {
+      color: #475569;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 22px 0 28px;
+    }
+
+    .checklist li {
+      margin-bottom: 12px;
+      color: #334155;
+      font-weight: 650;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      color: #0071dc;
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    .deal-visual {
+      background: radial-gradient(circle at top left, #ffc220, #0071dc 58%, #003c91);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 42px;
+      min-height: 380px;
+    }
+
+    .price-card {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 24px;
+      padding: 34px;
+      backdrop-filter: blur(10px);
+      max-width: 360px;
+    }
+
+    .price-card .big {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .price-card p {
+      font-size: 17px;
+      opacity: 0.95;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      counter-reset: step;
+    }
+
+    .step {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 26px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      position: relative;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #0071dc;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    .step p {
+      color: #475569;
+    }
+
+    .final-cta {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: center;
+      padding: 64px 20px;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .final-cta p {
+      max-width: 680px;
+      margin: 0 auto 26px;
+      font-size: 18px;
+      color: #cbd5e1;
+    }
+
+    .footer {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 20px;
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #0053e2;
+      font-weight: 700;
+    }
+
+    @media (max-width: 850px) {
+      .trust-grid,
+      .cards,
+      .steps,
+      .deal-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 54px 18px 48px;
+      }
+
+      .deal-copy,
+      .deal-visual {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace # with your privacy policy / disclosure pages when available -->
+  <div class="top-bar">Limited-time everyday savings — compare deals before prices change</div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="badge">Smart shopping made simple</div>
+      <h1>Find Everyday Deals on Home, Tech, Grocery, Personal Care & More</h1>
+      <p>Skip the endless searching. Start with one trusted shopping destination and discover current deals across the categories you already buy.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://sovrn.co/9ps0fx8" target="_blank" rel="nofollow sponsored noopener">Shop Current Deals</a>
+        <a class="btn btn-secondary" href="#categories">View Categories</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="trust-strip">
+    <div class="trust-grid">
+      <div>✓ Everyday essentials</div>
+      <div>✓ Online shopping</div>
+      <div>✓ Budget-friendly finds</div>
+      <div>✓ Fast deal discovery</div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section" id="categories">
+      <div class="section-title">
+        <h2>Popular Categories to Check First</h2>
+        <p>Use this page as a shortcut to browse deals across high-demand shopping categories.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🏠</div>
+          <h3>Home Essentials</h3>
+          <p>Shop cleaning supplies, kitchen basics, storage, organization, home comfort items, and more.</p>
+          <a href="https://sovrn.co/9ps0fx8" target="_blank" rel="nofollow sponsored noopener">Browse home deals →</a>
+        </div>
+
+        <div class="card">
+          <div class="icon">💻</div>
+          <h3>Tech & Electronics</h3>
+          <p>Look for savings on accessories, computer gear, smart home devices, headphones, and everyday electronics.</p>
+          <a href="https://sovrn.co/9ps0fx8" target="_blank" rel="nofollow sponsored noopener">Browse tech deals →</a>
+        </div>
+
+        <div class="card">
+          <div class="icon">🛒</div>
+          <h3>Grocery & Personal Care</h3>
+          <p>Compare everyday items including pantry staples, health products, hygiene items, and family necessities.</p>
+          <a href="https://sovrn.co/9ps0fx8" target="_blank" rel="nofollow sponsored noopener">Browse grocery deals →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="deal-box">
+        <div class="deal-copy">
+          <h2>One Click to Start Finding Better Everyday Prices</h2>
+          <p>Whether you are restocking essentials or comparing prices on a bigger purchase, starting with a broad marketplace helps you quickly see what is available.</p>
+          <ul class="checklist">
+            <li>Great for everyday family purchases</li>
+            <li>Helpful for comparing multiple product options</li>
+            <li>Works for home, tech, grocery, beauty, outdoor, and more</li>
+            <li>Simple shopping path with no complicated signup required here</li>
+          </ul>
+          <a class="btn btn-primary" href="https://sovrn.co/9ps0fx8" target="_blank" rel="nofollow sponsored noopener">Go to Today’s Deals</a>
+        </div>
+        <div class="deal-visual">
+          <div class="price-card">
+            <div class="big">Save</div>
+            <p>Compare current prices before you buy and look for deals on items you already need.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>How It Works</h2>
+        <p>A simple shopping flow designed to help visitors click through with confidence.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h3>Choose a Category</h3>
+          <p>Start with the item type you need most: household goods, electronics, personal care, groceries, gifts, or seasonal items.</p>
+        </div>
+        <div class="step">
+          <h3>Compare Options</h3>
+          <p>Review available products, prices, shipping options, reviews, and current promotions before making a purchase.</p>
+        </div>
+        <div class="step">
+          <h3>Shop Securely</h3>
+          <p>Complete your purchase directly through the trusted shopping partner after clicking through from this page.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="final-cta">
+    <h2>Ready to Check Today’s Deals?</h2>
+    <p>Click below to shop current offers and compare prices across everyday essentials, home products, electronics, and more.</p>
+    <a class="btn btn-primary" href="https://sovrn.co/9ps0fx8" target="_blank" rel="nofollow sponsored noopener">Start Shopping Now</a>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Affiliate Disclosure:</strong> This page may contain affiliate links. If you click and make a purchase, we may earn a commission at no additional cost to you.</p>
+    <p>This site is an independent promotional page and is not owned by, operated by, or officially endorsed by Walmart or any mentioned retailer. Product availability, prices, and promotions may change at any time.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms</a> · <a href="#">Contact</a></p>
+  </footer>
+</body>
+</html>
